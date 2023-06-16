@@ -28,11 +28,7 @@ pipeline
             {
                withSonarQubeEnv("SonarQube")
                 {
-                    sh "${tool("SonarQube_Ver_4.8")}/bin/sonar-scanner \
-                    -Dsonar.host.url=http://ec2-13-233-73-194.ap-south-1.compute.amazonaws.com:9000/ \
-                    -Dsonar.login=sqp_623c2daf041a093cc03d663aaa83e0687d374156 \
-                    -Dsonar.projectKey=Maven \
-                    -Dsonar.java.binaries=target"
+                    sh "${tool("SonarQube_Ver_4.8")}/bin/sonar-scanner -Dsonar.host.url=http://ec2-13-233-73-194.ap-south-1.compute.amazonaws.com:9000/ -Dsonar.login=sqp_623c2daf041a093cc03d663aaa83e0687d374156 -Dsonar.projectKey=Maven -Dsonar.java.binaries=target"
                 }
             }
         }
