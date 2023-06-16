@@ -1,6 +1,10 @@
 pipeline
 {
-    agent any
+     agent
+    {
+        label 'Master'
+        }
+
     tools
     {
         maven ('maven_3.9.0')
@@ -39,16 +43,16 @@ pipeline
                 sh 'mvn -s settings.xml clean deploy'
             }
         }
-        //stage('deployment')
-        //{
-        //    agent
-        //    {
-        //        label 'Ansible'
-        //    }
-        //    steps
-        //    {
-        //        sh 'ansible-playbook -i inventory deployment_playbook.yml -e "build_number=${BUILD_NUMBER}"'
-        //    }
-        //}
+        stage('deployment')
+        {
+            agent
+            {
+                label 'Ansible'
+            }
+            steps
+            {
+                sh 'ansible-playbook -i inventory deployment_playbook.yml -e "build_number=${BUILD_NUMBER}"'
+            }
+        }
     }
 }
